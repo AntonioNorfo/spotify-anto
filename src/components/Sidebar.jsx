@@ -1,4 +1,5 @@
 import React from "react";
+import { FaHome, FaBook } from "react-icons/fa";
 import logo from "../assets/logo/logo.png";
 
 const Sidebar = () => (
@@ -24,12 +25,14 @@ const Sidebar = () => (
             <ul>
               <li>
                 <a className="nav-item nav-link d-flex align-items-center" href="#">
-                  <i className="bi bi-house-door-fill"></i>&nbsp; Home
+                  <FaHome />
+                  &nbsp; Home
                 </a>
               </li>
               <li>
                 <a className="nav-item nav-link d-flex align-items-center" href="#">
-                  <i className="bi bi-book-fill"></i>&nbsp; Your Library
+                  <FaBook />
+                  &nbsp; Your Library
                 </a>
               </li>
               <li>
@@ -44,14 +47,16 @@ const Sidebar = () => (
           </div>
         </div>
       </div>
-      <div className="nav-btn">
+      <div className="nav-btn text-center">
         <button className="btn signup-btn" type="button">
           Sign Up
         </button>
         <button className="btn login-btn" type="button">
           Login
         </button>
-        <a href="#">Cookie Policy</a> | <a href="#"> Privacy</a>
+        <div className="policy-links">
+          <a href="#">Cookie Policy</a> | <a href="#">Privacy</a>
+        </div>
       </div>
     </nav>
   </aside>

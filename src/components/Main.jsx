@@ -1,4 +1,5 @@
 import React from "react";
+import MusicSection from "./MusicSection";
 
 const Main = () => (
   <main className="col-12 col-md-9 offset-md-3 mainPage">
@@ -15,10 +16,7 @@ const Main = () => (
       <div className="col-10">
         <div id="rock">
           <h2>Rock Classics</h2>
-          <div
-            className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-            id="rockSection"
-          ></div>
+          <MusicSection section="rock" artistName="queen" />
         </div>
       </div>
     </div>
@@ -26,7 +24,7 @@ const Main = () => (
       <div className="col-10">
         <div id="pop">
           <h2>Pop Culture</h2>
-          <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="popSection"></div>
+          <MusicSection section="pop" artistName="katyperry" />
         </div>
       </div>
     </div>
@@ -34,10 +32,7 @@ const Main = () => (
       <div className="col-10">
         <div id="hiphop">
           <h2>#HipHop</h2>
-          <div
-            className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-            id="hipHopSection"
-          ></div>
+          <MusicSection section="hipHop" artistName="eminem" />
         </div>
       </div>
     </div>
