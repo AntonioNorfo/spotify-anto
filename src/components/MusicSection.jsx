@@ -13,7 +13,7 @@ const albumCard = (singleSong, dispatch, likedSongs, section) => (
         alt="track"
         onClick={() => {
           dispatch(setCurrentSong(singleSong));
-          dispatch(setPreviewUrl(singleSong.preview)); // Imposta l'URL dell'anteprima
+          dispatch(setPreviewUrl(singleSong.preview));
         }}
       />
     ) : (
@@ -45,25 +45,19 @@ const MusicSection = ({ section, artistName, songs }) => {
       const fetchSongs = async () => {
         try {
           let response = await fetch(`https://striveschool-api.herokuapp.com/api/deezer/search?q=${artistName}`);
-          if (response.ok) {
-            let { data } = await response.json();
-            setFetchedSongs(data.slice(0, 4));
-          }
+          let data = await response.json();
+          setFetchedSongs(data.data);
         } catch (error) {
           console.error("Error fetching songs:", error);
         }
       };
       fetchSongs();
+    } else {
+      setFetchedSongs(songs);
     }
   }, [artistName, songs]);
 
-  return (
-    <div className="row">
-      {songs
-        ? songs.map((song) => albumCard(song, dispatch, likedSongs, section))
-        : fetchedSongs.map((song) => albumCard(song, dispatch, likedSongs, section))}
-    </div>
-  );
+  return <div className="row">{fetchedSongs.map((song) => albumCard(song, dispatch, likedSongs, section))}</div>;
 };
 
 export default MusicSection;

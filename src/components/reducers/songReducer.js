@@ -1,44 +1,29 @@
 const initialState = {
   currentSong: null,
-  likedSongs: JSON.parse(localStorage.getItem("likedSongs")) || {},
-  searchResults: [],
+  likedSongs: {},
   playlist: [],
-  previewUrl: null,
+  previewUrl: "",
+  searchResults: [],
 };
 
 const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_CURRENT_SONG":
-      return {
-        ...state,
-        currentSong: action.payload,
-      };
+      return { ...state, currentSong: action.payload };
     case "TOGGLE_LIKE_SONG":
-      const song = action.payload;
-      const updatedLikedSongs = {
-        ...state.likedSongs,
-        [song.id]: state.likedSongs[song.id] ? null : song,
-      };
-      localStorage.setItem("likedSongs", JSON.stringify(updatedLikedSongs));
-      return {
-        ...state,
-        likedSongs: updatedLikedSongs,
-      };
-    case "SET_SEARCH_RESULTS":
-      return {
-        ...state,
-        searchResults: action.payload,
-      };
+      const likedSongs = { ...state.likedSongs };
+      if (likedSongs[action.payload.id]) {
+        delete likedSongs[action.payload.id];
+      } else {
+        likedSongs[action.payload.id] = action.payload;
+      }
+      return { ...state, likedSongs };
     case "ADD_TO_PLAYLIST":
-      return {
-        ...state,
-        playlist: [...state.playlist, action.payload],
-      };
+      return { ...state, playlist: [...state.playlist, action.payload] };
     case "SET_PREVIEW_URL":
-      return {
-        ...state,
-        previewUrl: action.payload,
-      };
+      return { ...state, previewUrl: action.payload };
+    case "SET_SEARCH_RESULTS":
+      return { ...state, searchResults: action.payload };
     default:
       return state;
   }
