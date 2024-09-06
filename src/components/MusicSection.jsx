@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setCurrentSong } from "../reducers/songActions";
 
-const albumCard = (singleSong) => (
-  <div className="col text-center" key={singleSong.id}>
+const albumCard = (singleSong, dispatch) => (
+  <div className="col text-center" key={singleSong.id} onClick={() => dispatch(setCurrentSong(singleSong))}>
     <img className="img-fluid" src={singleSong.album.cover_medium} alt="track" />
     <p>
       Track: "{singleSong.title}"<br />
@@ -12,6 +14,7 @@ const albumCard = (singleSong) => (
 
 const MusicSection = ({ section, artistName }) => {
   const [songs, setSongs] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchSongs = async () => {
@@ -33,7 +36,7 @@ const MusicSection = ({ section, artistName }) => {
 
   return (
     <div id={`${section}Section`} className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
-      {songs.map(albumCard)}
+      {songs.map((song) => albumCard(song, dispatch))}
     </div>
   );
 };
