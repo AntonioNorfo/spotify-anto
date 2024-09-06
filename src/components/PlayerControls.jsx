@@ -13,31 +13,31 @@ const PlayerControls = () => {
   return (
     <div className="playerControls">
       {currentSong && (
-        <div className="current-song-details text-white text-center mb-2">
-          <p className="mb-0">
-            Track: "{currentSong.title}" &middot; Artist: {currentSong.artist.name}
+        <div className="current-song-details text-white text-center">
+          <p className="mb-0 mt-1">
+            Artist: {currentSong.artist.name} &middot; Track: "{currentSong.title}"
           </p>
         </div>
       )}
       <div className="controls d-flex justify-content-center align-items-center">
-        <a href="#" className="control-icon">
+        <a href="#" className="control-icon mb-2">
           <img src={shuffleIcon} alt="shuffle" />
         </a>
-        <a href="#" className="control-icon">
+        <a href="#" className="control-icon  mb-2">
           <img src={prevIcon} alt="prev" />
         </a>
-        <a href="#" className="control-icon">
+        <a href="#" className="control-icon  mb-2">
           <img src={playIcon} alt="play" />
         </a>
-        <a href="#" className="control-icon">
+        <a href="#" className="control-icon  mb-2">
           <img src={nextIcon} alt="next" />
         </a>
-        <a href="#" className="control-icon">
+        <a href="#" className="control-icon  mb-2">
           <img src={repeatIcon} alt="repeat" />
         </a>
       </div>
-      <div className="progress mt-3 w-100">
-        <div role="progressbar"></div>
+      <div className="progress w-50 mb-3">
+        <div className="progress-bar " role="progressbar"></div>
       </div>
     </div>
   );
