@@ -1,4 +1,3 @@
-// src/components/PlayerControls.jsx
 import React from "react";
 import { useSelector } from "react-redux";
 import shuffleIcon from "../assets/playerbuttons/shuffle.png";
@@ -6,7 +5,7 @@ import prevIcon from "../assets/playerbuttons/prev.png";
 import playIcon from "../assets/playerbuttons/play.png";
 import nextIcon from "../assets/playerbuttons/next.png";
 import repeatIcon from "../assets/playerbuttons/repeat.png";
-
+impo;
 const PlayerControls = () => {
   const currentSong = useSelector((state) => state.song.currentSong);
 
@@ -15,7 +14,8 @@ const PlayerControls = () => {
       {currentSong && (
         <div className="current-song-details text-white text-center">
           <p className="mb-0 mt-1">
-            Artist: {currentSong.artist.name} &middot; Track: "{currentSong.title}"
+            <span className="text-primary fw-bold "> Artist:</span> {currentSong.artist.name} &middot;{" "}
+            <span className="text-primary fw-bold "> Track:</span> "{currentSong.title}"
           </p>
         </div>
       )}
