@@ -7,3 +7,8 @@ export const toggleLikeSong = (songId) => ({
   type: "TOGGLE_LIKE_SONG",
   payload: songId,
 });
+
+export const setSearchResults = (results) => ({
+  type: "SET_SEARCH_RESULTS",
+  payload: results,
+});

@@ -1,7 +1,7 @@
 const initialState = {
   currentSong: null,
   likedSongs: {},
-  savedSongs: [],
+  searchResults: [],
 };
 
 const songReducer = (state = initialState, action) => {
@@ -12,18 +12,17 @@ const songReducer = (state = initialState, action) => {
         currentSong: action.payload,
       };
     case "TOGGLE_LIKE_SONG":
-      const songId = action.payload;
       return {
         ...state,
         likedSongs: {
           ...state.likedSongs,
-          [songId]: !state.likedSongs[songId],
+          [action.payload]: !state.likedSongs[action.payload],
         },
       };
-    case "SAVE_SONG":
+    case "SET_SEARCH_RESULTS":
       return {
         ...state,
-        savedSongs: [...state.savedSongs, action.payload],
+        searchResults: action.payload,
       };
     default:
       return state;
