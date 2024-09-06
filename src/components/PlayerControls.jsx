@@ -5,7 +5,7 @@ import prevIcon from "../assets/playerbuttons/prev.png";
 import playIcon from "../assets/playerbuttons/play.png";
 import nextIcon from "../assets/playerbuttons/next.png";
 import repeatIcon from "../assets/playerbuttons/repeat.png";
-impo;
+
 const PlayerControls = () => {
   const currentSong = useSelector((state) => state.song.currentSong);
 
