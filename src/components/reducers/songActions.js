@@ -17,3 +17,8 @@ export const addToPlaylist = (song) => ({
   type: "ADD_TO_PLAYLIST",
   payload: song,
 });
+
+export const setPreviewUrl = (url) => ({
+  type: "SET_PREVIEW_URL",
+  payload: url,
+});

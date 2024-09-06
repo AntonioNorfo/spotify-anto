@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentSong, toggleLikeSong, addToPlaylist } from "./reducers/songActions";
+import { setCurrentSong, toggleLikeSong, addToPlaylist, setPreviewUrl } from "./reducers/songActions";
 import likeIcon from "../assets/playerbuttons/like.png";
 import likedIcon from "../assets/playerbuttons/liked.png";
 
@@ -11,7 +11,10 @@ const albumCard = (singleSong, dispatch, likedSongs, section) => (
         className="img-fluid"
         src={singleSong.album.cover_medium}
         alt="track"
-        onClick={() => dispatch(setCurrentSong(singleSong))}
+        onClick={() => {
+          dispatch(setCurrentSong(singleSong));
+          dispatch(setPreviewUrl(singleSong.preview)); // Imposta l'URL dell'anteprima
+        }}
       />
     ) : (
       <div className="img-placeholder">No Image Available</div>
@@ -47,23 +50,18 @@ const MusicSection = ({ section, artistName, songs }) => {
             setFetchedSongs(data.slice(0, 4));
           }
         } catch (error) {
-          console.error("Failed to fetch songs", error);
+          console.error("Error fetching songs:", error);
         }
       };
       fetchSongs();
     }
   }, [artistName, songs]);
 
-  const displayedSongs = songs || fetchedSongs;
-
   return (
     <div className="row">
-      {displayedSongs.map((song, index) => (
-        <React.Fragment key={song.id}>
-          {albumCard(song, dispatch, likedSongs, section)}
-          {(index + 1) % 4 === 0 && <div className="w-100"></div>}
-        </React.Fragment>
-      ))}
+      {songs
+        ? songs.map((song) => albumCard(song, dispatch, likedSongs, section))
+        : fetchedSongs.map((song) => albumCard(song, dispatch, likedSongs, section))}
     </div>
   );
 };

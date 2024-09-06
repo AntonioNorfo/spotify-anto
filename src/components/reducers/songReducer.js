@@ -3,6 +3,7 @@ const initialState = {
   likedSongs: JSON.parse(localStorage.getItem("likedSongs")) || {},
   searchResults: [],
   playlist: [],
+  previewUrl: null,
 };
 
 const songReducer = (state = initialState, action) => {
@@ -32,6 +33,11 @@ const songReducer = (state = initialState, action) => {
       return {
         ...state,
         playlist: [...state.playlist, action.payload],
+      };
+    case "SET_PREVIEW_URL":
+      return {
+        ...state,
+        previewUrl: action.payload,
       };
     default:
       return state;

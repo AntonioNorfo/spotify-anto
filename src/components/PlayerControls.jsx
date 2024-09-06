@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import shuffleIcon from "../assets/playerbuttons/shuffle.png";
 import prevIcon from "../assets/playerbuttons/prev.png";
@@ -8,6 +8,41 @@ import repeatIcon from "../assets/playerbuttons/repeat.png";
 
 const PlayerControls = () => {
   const currentSong = useSelector((state) => state.song.currentSong);
+  const previewUrl = useSelector((state) => state.song.previewUrl);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(new Audio(previewUrl));
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    if (previewUrl) {
+      audioRef.current.src = previewUrl;
+      audioRef.current.currentTime = 0; // Inizia dall'inizio
+      if (isPlaying) {
+        audioRef.current.play();
+      }
+    }
+  }, [previewUrl, isPlaying]);
+
+  useEffect(() => {
+    const handleTimeUpdate = () => {
+      setProgress((audioRef.current.currentTime / 60) * 100); // Calcola il progresso su 60 secondi
+    };
+
+    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+
+    return () => {
+      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+    };
+  }, []);
+
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
 
   return (
     <div className="playerControls">
@@ -26,8 +61,8 @@ const PlayerControls = () => {
         <a href="#" className="control-icon  mb-2">
           <img src={prevIcon} alt="prev" />
         </a>
-        <a href="#" className="control-icon  mb-2">
-          <img src={playIcon} alt="play" />
+        <a href="#" className="control-icon  mb-2" onClick={handlePlayPause}>
+          <img src={playIcon} alt="play/pause" />
         </a>
         <a href="#" className="control-icon  mb-2">
           <img src={nextIcon} alt="next" />
@@ -37,8 +72,9 @@ const PlayerControls = () => {
         </a>
       </div>
       <div className="progress w-50 mb-3">
-        <div className="progress-bar " role="progressbar"></div>
+        <div className="progress-bar" role="progressbar" style={{ width: `${progress}%` }}></div>
       </div>
+      <audio ref={audioRef} />
     </div>
   );
 };

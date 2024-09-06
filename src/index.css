@@ -187,3 +187,7 @@ ul {
 .mt-5 {
   margin-top: 3rem !important;
 }
+.playerControls .progress-bar {
+  background-color: #1db954;
+  width: 0;
+}
