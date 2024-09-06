@@ -69,3 +69,20 @@
 .playerControls .progress-bar {
   background-color: #1db954;
 }
+.album-card {
+  position: relative;
+}
+
+.album-card .btn-link {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.album-card .btn-link img {
+  width: 20px;
+  height: 20px;
+}

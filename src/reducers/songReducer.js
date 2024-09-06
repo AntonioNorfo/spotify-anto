@@ -1,6 +1,7 @@
 const initialState = {
   currentSong: null,
   likedSongs: {},
+  savedSongs: [],
 };
 
 const songReducer = (state = initialState, action) => {
@@ -18,6 +19,11 @@ const songReducer = (state = initialState, action) => {
           ...state.likedSongs,
           [songId]: !state.likedSongs[songId],
         },
+      };
+    case "SAVE_SONG":
+      return {
+        ...state,
+        savedSongs: [...state.savedSongs, action.payload],
       };
     default:
       return state;

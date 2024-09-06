@@ -3,6 +3,7 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import Player from "./components/Player";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
       <div className="container-fluid">
         <div className="row">
           <Sidebar />
-          <Main />
+          <Routes>
+            <Route path="/" element={<Main />} />
+          </Routes>
         </div>
       </div>
       <Player />

@@ -14,8 +14,8 @@ const PlayerControls = () => {
       {currentSong && (
         <div className="current-song-details text-white text-center">
           <p className="mb-0 mt-1">
-            <span className="text-primary fw-bold "> Artist:</span> {currentSong.artist.name} &middot;{" "}
-            <span className="text-primary fw-bold "> Track:</span> "{currentSong.title}"
+            <span className="text-info fw-bold"> Artist:</span> {currentSong.artist.name} &middot;{" "}
+            <span className="text-info fw-bold"> Track:</span> "{currentSong.title}"
           </p>
         </div>
       )}
