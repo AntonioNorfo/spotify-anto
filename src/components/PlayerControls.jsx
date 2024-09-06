@@ -56,33 +56,33 @@ const PlayerControls = () => {
   };
 
   return (
-    <div className="playerControls d-flex flex-column align-items-center">
+    <div className="playerControls">
       {currentSong && (
-        <div className="current-song-details text-white text-center w-100 mb-2">
+        <div className="current-song-details text-white text-center">
           <p className="mb-0 mt-1">
             <span className="text-info fw-bold"> Artist:</span> {currentSong.artist.name} &middot;{" "}
             <span className="text-info fw-bold"> Track:</span> "{currentSong.title}"
           </p>
         </div>
       )}
-      <div className="controls d-flex justify-content-center align-items-center w-100 gap-3">
+      <div className="controls d-flex justify-content-center align-items-center">
         <a href="#" className="control-icon mb-2">
-          <img src={shuffleIcon} alt="shuffle" className="img-fluid" />
+          <img src={shuffleIcon} alt="shuffle" />
         </a>
-        <a href="#" className="control-icon mb-2">
-          <img src={prevIcon} alt="prev" className="img-fluid" />
+        <a href="#" className="control-icon  mb-2">
+          <img src={prevIcon} alt="prev" />
         </a>
-        <a href="#" className="control-icon mb-2" onClick={handlePlayPause}>
-          <img src={playIcon} alt="play/pause" className="img-fluid" />
+        <a href="#" className="control-icon  mb-2" onClick={handlePlayPause}>
+          <img src={playIcon} alt="play/pause" />
         </a>
-        <a href="#" className="control-icon mb-2">
-          <img src={nextIcon} alt="next" className="img-fluid" />
+        <a href="#" className="control-icon  mb-2">
+          <img src={nextIcon} alt="next" />
         </a>
-        <a href="#" className="control-icon mb-2">
-          <img src={repeatIcon} alt="repeat" className="img-fluid" />
+        <a href="#" className="control-icon  mb-2">
+          <img src={repeatIcon} alt="repeat" />
         </a>
       </div>
-      <div className="progress-container d-flex align-items-center w-100 mt-2">
+      <div className="progress-container d-flex align-items-center w-100 mb-3">
         <div className="progress w-100">
           <div className="progress-bar" role="progressbar" style={{ width: `${progress}%` }}></div>
         </div>

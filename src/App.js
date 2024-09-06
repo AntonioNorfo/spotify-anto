@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <div className="container-fluid">
         <div className="row">
-          <Sidebar className="d-none d-md-block" />
+          <Sidebar />
           <Routes>
             <Route path="/" element={<Main />} />
             <Route path="/favorites" element={<Favorites />} />
