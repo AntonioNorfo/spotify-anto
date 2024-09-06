@@ -102,11 +102,10 @@ ul {
   }
 }
 
-/* BOTTOM PLAYER SECTION*/
-
 .bg-container {
-  height: 5.5rem;
+  height: 7rem;
   background-color: #282828;
+  background: transparent;
 }
 
 .playerControls div {
@@ -121,11 +120,11 @@ ul {
 .playerControls a img {
   width: 14px;
   margin-top: 1rem;
-  filter: brightness(60%);
+  filter: brightness(90%);
 }
 
 .playerControls a:hover {
-  filter: brightness(80%);
+  filter: brightness(90%);
   color: #282828 !important;
 }
 
@@ -174,7 +173,7 @@ ul {
 #hiphop {
   color: white;
   font-weight: 700;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 #hipHopSection {
@@ -187,7 +186,34 @@ ul {
 .mt-5 {
   margin-top: 3rem !important;
 }
+.player-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #282c34;
+  padding: 10px 0;
+}
+
+.playerControls .progress-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.playerControls .progress {
+  height: 15px;
+  background-color: #444;
+  flex-grow: 1;
+}
+
 .playerControls .progress-bar {
   background-color: #1db954;
-  width: 0;
+}
+
+.playerControls .current-time {
+  min-width: 50px;
+  text-align: right;
+  color: white;
 }

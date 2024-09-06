@@ -12,6 +12,7 @@ const PlayerControls = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(new Audio(previewUrl));
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
     if (previewUrl) {
@@ -25,13 +26,17 @@ const PlayerControls = () => {
 
   useEffect(() => {
     const handleTimeUpdate = () => {
+      setCurrentTime(audioRef.current.currentTime);
       setProgress((audioRef.current.currentTime / 60) * 100); // Calcola il progresso su 60 secondi
     };
 
-    audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
+    const audioElement = audioRef.current;
+    audioElement.addEventListener("timeupdate", handleTimeUpdate);
 
     return () => {
-      audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
+      if (audioElement) {
+        audioElement.removeEventListener("timeupdate", handleTimeUpdate);
+      }
     };
   }, []);
 
@@ -42,6 +47,12 @@ const PlayerControls = () => {
       audioRef.current.play();
     }
     setIsPlaying(!isPlaying);
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
   return (
@@ -71,8 +82,11 @@ const PlayerControls = () => {
           <img src={repeatIcon} alt="repeat" />
         </a>
       </div>
-      <div className="progress w-50 mb-3">
-        <div className="progress-bar" role="progressbar" style={{ width: `${progress}%` }}></div>
+      <div className="progress-container d-flex align-items-center w-100 mb-3">
+        <div className="progress w-100">
+          <div className="progress-bar" role="progressbar" style={{ width: `${progress}%` }}></div>
+        </div>
+        <span className="current-time text-white ms-2">{formatTime(currentTime)}</span>
       </div>
       <audio ref={audioRef} />
     </div>
