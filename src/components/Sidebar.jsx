@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaHome, FaBook, FaHeart } from "react-icons/fa";
 import logo from "../assets/logo/logo.png";
-import { setSearchResults } from "../reducers/songActions";
+import { setSearchResults } from "./reducers/songActions";
 
 const Sidebar = () => {
   const [query, setQuery] = useState("");

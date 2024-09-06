@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentSong, toggleLikeSong, addToPlaylist } from "../reducers/songActions";
+import { setCurrentSong, toggleLikeSong, addToPlaylist } from "./reducers/songActions";
 import likeIcon from "../assets/playerbuttons/like.png";
 import likedIcon from "../assets/playerbuttons/liked.png";
 
