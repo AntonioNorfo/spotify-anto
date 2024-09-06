@@ -1,6 +1,6 @@
 const initialState = {
   currentSong: null,
-  likedSongs: {},
+  likedSongs: JSON.parse(localStorage.getItem("likedSongs")) || {},
   searchResults: [],
   playlist: [],
 };
@@ -14,12 +14,14 @@ const songReducer = (state = initialState, action) => {
       };
     case "TOGGLE_LIKE_SONG":
       const song = action.payload;
+      const updatedLikedSongs = {
+        ...state.likedSongs,
+        [song.id]: state.likedSongs[song.id] ? null : song,
+      };
+      localStorage.setItem("likedSongs", JSON.stringify(updatedLikedSongs));
       return {
         ...state,
-        likedSongs: {
-          ...state.likedSongs,
-          [song.id]: state.likedSongs[song.id] ? null : song,
-        },
+        likedSongs: updatedLikedSongs,
       };
     case "SET_SEARCH_RESULTS":
       return {
