@@ -184,3 +184,6 @@ ul {
 .mainPage img {
   width: 200px;
 }
+.mt-5 {
+  margin-top: 3rem !important;
+}

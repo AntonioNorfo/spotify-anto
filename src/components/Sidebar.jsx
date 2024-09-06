@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { FaHome, FaBook } from "react-icons/fa";
+import { FaHome, FaBook, FaHeart } from "react-icons/fa";
 import logo from "../assets/logo/logo.png";
 import { setSearchResults } from "../reducers/songActions";
 
@@ -56,6 +56,12 @@ const Sidebar = () => {
                     <FaBook />
                     &nbsp; Your Library
                   </a>
+                </li>
+                <li>
+                  <Link className="nav-item nav-link d-flex align-items-center" to="/favorites">
+                    <FaHeart />
+                    &nbsp; Favorites
+                  </Link>
                 </li>
                 <li>
                   <form onSubmit={handleSearch} className="input-group mt-3">

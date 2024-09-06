@@ -3,6 +3,7 @@ import "./App.css";
 import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import Player from "./components/Player";
+import Favorites from "./components/Favorites";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Sidebar />
           <Routes>
             <Route path="/" element={<Main />} />
+            <Route path="/favorites" element={<Favorites />} />
           </Routes>
         </div>
       </div>
